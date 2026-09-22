@@ -4,7 +4,7 @@ Solución técnica distribuida compuesta por dos microservicios comunicados vía
 
 ---
 
-## 🚀 Despliegue en la Nube (Producción en Render)
+## Despliegue en la Nube (Producción en Render)
 
 Los servicios se encuentran desplegados y listos para pruebas públicas:
 
