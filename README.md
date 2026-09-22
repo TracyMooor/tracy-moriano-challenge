@@ -17,35 +17,37 @@ Los servicios se encuentran desplegados y listos para pruebas públicas:
 
 El sistema implementa una separación de responsabilidades (Separation of Concerns):
 
-       [ Cliente / Postman ]
-                 │
-                 │ 1. POST /api/matrix/qr (Matriz original)
-                 ▼
-┌─────────────────────────────────────────────────────────┐
-│ go-api-tracy (Go + Fiber)                               │
-│  - Gateway y cálculo de Factorización QR                │
-│  - Método de Gram-Schmidt modificado                    │
-└───────────────────────────┬─────────────────────────────┘
-                            │
-                            │ 2. POST /api/stats (Matrices Q y R)
-                            ▼
-┌─────────────────────────────────────────────────────────┐
-│ node-api-tracy (Node.js + Express)                      │
-│  - Cálculo estadístico: max, min, sum, avg              │
-│  - Verificación booleana de matriz diagonal             │
-└───────────────────────────┬─────────────────────────────┘
-                            │
-                            │ 3. Retorno JSON de métricas
-                            ▼
-┌─────────────────────────────────────────────────────────┐
-│ go-api-tracy                                            │
-│  - Unificación final de Q, R y estadísticas             │
-└───────────────────────────┬─────────────────────────────┘
-                            │
-                            │ 4. Respuesta consolidada (200 OK)
-                            ▼
-                   [ Cliente / Postman ]
+flowchart TD
+    Client(["Cliente / Postman"])
+    
+    subgraph S1 ["1. Microservicio Go (go-api-tracy)"]
+        direction TB
+        G1["API Gateway (Puerto 8080)"]
+        G2["Factorización QR (Gram-Schmidt Modificado)"]
+        G3["Unificación Final de Resultados"]
+        G1 --> G2
+    end
 
+    subgraph S2 ["2. Microservicio Node.js (node-api-tracy)"]
+        direction TB
+        N1["Extracción de Métricas (max, min, sum, avg)"]
+        N2["Comprobación de Matriz Diagonal"]
+        N1 --- N2
+    end
+
+    Client -->|"1. POST /api/matrix/qr (Matriz A)"| G1
+    G2 -->|"2. POST /api/stats (Matrices Q y R)"| S2
+    S2 -->|"3. Retorno JSON de estadísticas"| G3
+    G3 -->|"4. Respuesta consolidada (200 OK)"| Client
+
+    style Client fill:#1e293b,stroke:#475569,stroke-width:2px,color:#f8fafc
+    style S1 fill:#0f172a,stroke:#3b82f6,stroke-width:2px,color:#f8fafc
+    style S2 fill:#0f172a,stroke:#10b981,stroke-width:2px,color:#f8fafc
+    style G1 fill:#1e293b,stroke:#3b82f6,color:#f8fafc
+    style G2 fill:#1e293b,stroke:#3b82f6,color:#f8fafc
+    style G3 fill:#1e293b,stroke:#3b82f6,color:#f8fafc
+    style N1 fill:#1e293b,stroke:#10b981,color:#f8fafc
+    style N2 fill:#1e293b,stroke:#10b981,color:#f8fafc
 
 ## Endpoints y Pruebas Técnicas
 
