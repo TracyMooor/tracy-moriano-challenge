@@ -17,31 +17,34 @@ Los servicios se encuentran desplegados y listos para pruebas públicas:
 
 El sistema implementa una separación de responsabilidades (Separation of Concerns):
 
-[ Cliente / Postman ]
-│
-▼ 1. POST /api/matrix/qr (Matriz original)
+       [ Cliente / Postman ]
+                 │
+                 │ 1. POST /api/matrix/qr (Matriz original)
+                 ▼
 ┌─────────────────────────────────────────────────────────┐
 │ go-api-tracy (Go + Fiber)                               │
 │  - Gateway y cálculo de Factorización QR                │
 │  - Método de Gram-Schmidt modificado                    │
 └───────────────────────────┬─────────────────────────────┘
-│
-▼ 2. POST /api/stats (Matrices Q y R)
+                            │
+                            │ 2. POST /api/stats (Matrices Q y R)
+                            ▼
 ┌─────────────────────────────────────────────────────────┐
 │ node-api-tracy (Node.js + Express)                      │
 │  - Cálculo estadístico: max, min, sum, avg              │
 │  - Verificación booleana de matriz diagonal             │
 └───────────────────────────┬─────────────────────────────┘
-│
-▼ 3. Retorno JSON de métricas
+                            │
+                            │ 3. Retorno JSON de métricas
+                            ▼
 ┌─────────────────────────────────────────────────────────┐
 │ go-api-tracy                                            │
 │  - Unificación final de Q, R y estadísticas             │
 └───────────────────────────┬─────────────────────────────┘
-│
-▼ 4. Respuesta consolidada (200 OK)
-[ Cliente / Postman ]
-
+                            │
+                            │ 4. Respuesta consolidada (200 OK)
+                            ▼
+                   [ Cliente / Postman ]
 ---
 
 ## Endpoints y Pruebas Técnicas
