@@ -1,4 +1,4 @@
-# Interseguro Backend Challenge - Factorización QR y Estadísticas Matriciales
+# Tracy Moriano - Challenge - Factorización QR y Estadísticas Matriciales
 
 Solución técnica distribuida compuesta por dos microservicios comunicados vía HTTP para el procesamiento algebraico de matrices y extracción de métricas estadísticas.
 
@@ -13,7 +13,7 @@ Los servicios se encuentran desplegados y listos para pruebas públicas:
 
 ---
 
-## 🏛️ Arquitectura del Sistema
+## Arquitectura del Sistema
 
 El sistema implementa una separación de responsabilidades (*Separation of Concerns*):
 
@@ -44,7 +44,7 @@ El sistema implementa una separación de responsabilidades (*Separation of Conce
 
 ---
 
-## 📡 Endpoints y Pruebas Técnicas
+## Endpoints y Pruebas Técnicas
 
 ### 1. Factorización QR y Estadísticas Consolidadas (Go Service)
 Procesa la matriz rectangular, calcula la descomposición $A = Q \cdot R$ y retorna el análisis estadístico consolidado.
