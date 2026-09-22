@@ -45,7 +45,7 @@ El sistema implementa una separación de responsabilidades (Separation of Concer
                             │ 4. Respuesta consolidada (200 OK)
                             ▼
                    [ Cliente / Postman ]
----
+
 
 ## Endpoints y Pruebas Técnicas
 
