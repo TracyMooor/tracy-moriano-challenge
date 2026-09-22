@@ -1,0 +1,24 @@
+services:
+  node-service:
+    build: ./node-api-tracy
+    container_name: node-api-tracy
+    ports:
+      - "3000:3000"
+    networks:
+      - challenge-network
+
+  go-service:
+    build: ./go-api-tracy
+    container_name: go-api-tracy
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_API_URL=http://node-service:3000
+    depends_on:
+      - node-service
+    networks:
+      - challenge-network
+
+networks:
+  challenge-network:
+    driver: bridge

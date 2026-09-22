@@ -1,0 +1,12 @@
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Go
+go-api/main
+*.exe
+*.exe~
+
+# Entorno y logs
+.env
+*.log
