@@ -17,9 +17,10 @@ Los servicios se encuentran desplegados y listos para pruebas públicas:
 
 El sistema implementa una separación de responsabilidades (Separation of Concerns):
 
+```mermaid
 flowchart TD
-    Client(["Cliente / Postman"])
-    
+    Client["Cliente / Postman"]
+
     subgraph S1 ["1. Microservicio Go (go-api-tracy)"]
         direction TB
         G1["API Gateway (Puerto 8080)"]
@@ -48,6 +49,7 @@ flowchart TD
     style G3 fill:#1e293b,stroke:#3b82f6,color:#f8fafc
     style N1 fill:#1e293b,stroke:#10b981,color:#f8fafc
     style N2 fill:#1e293b,stroke:#10b981,color:#f8fafc
+``` 
 
 ## Endpoints y Pruebas Técnicas
 
